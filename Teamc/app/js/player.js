@@ -1,14 +1,7 @@
-
 /**
- * Created by DamianVillanueva on 8/28/2015.
+ * Created by IvanMorales on 09/13/2015.
  */
-
-var Player =function(name){
-    this.name=name;
-    this.score=0;
-    //TODO: Table size should be read from a constant
-    this.table=new Table(8);
-    this.numShots=0;
+var Player = function(name, table){
+    this.name = name;
+    this.table = table;
 };
-
-

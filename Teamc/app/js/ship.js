@@ -1,7 +1,8 @@
 /**
- * Created by DamianVillanueva on 8/28/2015.
+ * Created by Damian Villanueva
  */
-var ship=function(id, sizeShip){
+var Ship = function(size, initPos, id){
+    this.size = size;
+    this.position = initPos;
     this.id=id;
-    this.sizeShip=sizeShip;
 }

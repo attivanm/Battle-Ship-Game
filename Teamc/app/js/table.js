@@ -1,47 +1,80 @@
 /**
- * Created by DamianVillanueva on 8/28/2015.
+ * Created by Damian Villanueva
  */
-
 var Table = function (size) {
-    this.size=size;
-    this.ships=[];
-    this._field=[];
-    this._createShips();
-    this._initFields();
-    this._placeShips();
-    //this.ramdom=parseInt(Math.random()*(size-this.sizeShip));
+    this.size = size;
+    this.ships = [];
+    this.grid = new Array(size);
+    this.grid2 = new Array(size);
+    var numShips = 3;
+    this.totalship = 0;
+    this.initGrid(this.size);
+    this.initShips(numShips);
 
-
-/*
-    var tableGame=[size];
-    for(var i=0;i<size;i++){
-        tableGame[i]='';
-    }*/
 };
-
-
-Table.prototype._createShips=function(){
-    //TODO: NUmber of ships should be retrieved from a constant
-    var numShips=1;
-    for(var i=0;i<numShips;i++){
-        var ship =new ship(i, 3);
-        this.ships.push(ship);
-    }
-};
-
-Table.prototype._initFields=function(){
-    for(var i=0;i<this.size;i++){
-        this._field.push('-');
-    }
-};
-Table.prototype._placeShips=function(){
-
-    for(var i=0;i<this.ships.length;i++)
+Table.prototype.initGrid = function (size){
+    var EMPTY_CELL = '0';
+    for (var i = 0; i < size; i++)
     {
-        var initPos=parseInt(Math.random()*(this.size-ship.sizeShip));
-        for(var j=initPos;i<(initPos+ship.sizeShip);j++){
-            this._field[j]=ship.id;
+        this.grid[i] = new Array(size);
+        this.grid2[i] = new Array(size);
+
+    }
+    for (var i = 0; i < size; i++)
+    {
+        for (var j = 0; j < size; j++) {
+            this.grid[i][j] = EMPTY_CELL;
+            this.grid2[i][j] = EMPTY_CELL;
+        }
+        console.log('\n');
+    }
+};
+Table.prototype.initShips = function(numShips){
+    for(var j=1;j<=numShips;j++)
+    {
+        var shipID = j;
+        var shipSize = this.getShipRandomSize();
+        var shipInitPos = this.getShipRandomPos(shipSize);
+        var ship = new Ship(shipSize, shipInitPos,shipID);
+        this.totalship += shipSize;
+        this.ships.push(ship);
+        var k = shipInitPos.getRow();
+        for (var i = shipInitPos.getColumn(); i < shipInitPos.getColumn() + shipSize; i++) {
+            this.grid[k][i] = shipID;
         }
     }
 
+};
+Table.prototype.getShipRandomSize= function()
+{
+    return  parseInt(Math.random()* 2)+1;
 }
+Table.prototype.getShipRandomPos= function(shipSize)
+{
+    var column;
+    var row;
+    do
+    {
+        column = parseInt(Math.random() * this.size - shipSize);
+        row = parseInt(Math.random() * this.size);
+        for(var j=0;j<row;j++)
+        {
+            for(var i = column; i < column + shipSize; i++)
+            {
+                if(this.grid[j][i] != '0')
+                {
+                    break;
+                }
+            }
+            if(i == column + shipSize)
+            {
+                break;
+            }
+        }
+        if(i == column + shipSize)
+        {
+            break;
+        }
+    }while(true);
+    return new Axis(row, column);
+};
