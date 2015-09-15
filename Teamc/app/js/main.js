@@ -1,5 +1,5 @@
 /**
- * Created by IvanMorales on 09/13/2015.
+ * Created by Damian Villanueva
  */
 /*do{
 var numPlayers = window.prompt('Number of Players 1,2?');
