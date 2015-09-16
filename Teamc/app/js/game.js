@@ -1,5 +1,5 @@
 /**
- * Created by IvanMorales on 09/13/2015.
+ * Created by Damian Villanueva
  */
 var BattleShipGame = function(numberPlayers, size){
     this.players = [];

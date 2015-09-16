@@ -1,5 +1,5 @@
 /**
- * Created by IvanMorales on 09/13/2015.
+ * Created by Damian Villanueva
  */
 var Position = function(row, col){
     var _pos = [row, col];

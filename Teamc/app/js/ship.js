@@ -1,5 +1,5 @@
 /**
- * Created by IvanMorales on 09/13/2015.
+ * Created by Damian Villanueva
  */
 var Ship = function(size, initPos, id){
     this.size = size;
